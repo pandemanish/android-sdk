@@ -51,17 +51,22 @@ v0.5.0
 
 If you encounter issues using or integrating this plugin, please file a support ticket at support.marketo.com
 
-# Marketo Android SDK Installation Guide 
+# Marketo Android SDK Installation Guide
 
-## Prerequisites 
+## Prerequisites
 1.  Register an application in Marketo Admin portal, get your application secret key and munchkin id.
 2.  Configure Android Push access [learn here](http://docs.marketo.com/display/public/DOCS/Configure+Mobile+App+Android+Push+Access)
-3.  Download [Marketo SDK for Android](https://github.com/Marketo/android-sdk/archive/master.zip). 
 
 ## Android SDK Setup
 1. Open your project in android Studio![file]( ScreenShots/2.png)
 2. Right click on your project and select #Open Module Settings![file]( ScreenShots/3.png)
-3. Click on the '+' button on the top Left Corner ![file]( ScreenShots/4.png)
+3. Click on Project which is in the Left panel of the screen ![file]( ScreenShots/4.png)
+4. In *Android Plugin Repository* add " 'https://raw.github.com/pandemanish/android-sdk.git/Demo' "
+5. In *Default Library Repository* add " 'https://raw.github.com/pandemanish/android-sdk.git/Demo' "
+6. Click OK
+7. In application level build.gradle under dependencies add " implementation 'com.marketo:MarketoSDK:0.7.4' "
+8. Sync your Project with Gradle Files
+<!-- 3. Click on the '+' button on the top Left Corner ![file]( ScreenShots/4.png)
 4. Select 'Import .JAR/.AAR package' and click 'Next'![file]( ScreenShots/5.png)
 5. Now clik on the '...' button and select the location of the .aar file from Marketo Android SDK ![file]( ScreenShots/6.png)
 6. You can change the name of the sub project and select finish and select ok ![file]( ScreenShots/7.png)
@@ -70,7 +75,7 @@ If you encounter issues using or integrating this plugin, please file a support 
 9. Click on the '+' button (at the bottom on Mac and at the left right top corner on windows) and select Module dependency ![file]( ScreenShots/11.png)
 10. select the name which you gave in step 7 ![file]( ScreenShots/12.png)
 11. select ok and let the gradle sync the project and resolve the dependancy![file]( ScreenShots/13.png)
-12. once gradle is complete it will show you the following info in Gradle Console![file]( ScreenShots/14.png)
+12. once gradle is complete it will show you the following info in Gradle Console![file]( ScreenShots/14.png) -->
 
 ## Configure Permissions
 
@@ -81,7 +86,7 @@ If you encounter issues using or integrating this plugin, please file a support 
     <uses‐permission android:name="android.permission.INTERNET"/>
     <uses‐permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-   
+
    <!‐‐Following permissions are required for push notification.‐‐>
     <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
     <!‐‐Keeps the processor from sleeping when a message is received.‐‐>
@@ -114,15 +119,15 @@ To receive push notifications from Marketo, you need to add the Marketo Service 
         <intent-filter>
             <!‐‐Receives the actual messages.‐‐>
             <action android:name="com.google.android.c2dm.intent.RECEIVE"/>
-    
+
             <!‐‐Register to enable push notification‐‐>
             <action android:name="com.google.android.c2dm.intent.REGISTRATION"/>
-    
+
             <!‐‐‐Replace YOUR_PACKAGE_NAME with your own package name‐‐>
             <category android:name="YOUR_PACKAGE_NAME"/>
         </intent-filter>
     </receiver>
-    
+
     <!‐‐Marketo service to handle push registration and notification‐‐>
     <service android:name="com.marketo.MarketoIntentService"/>
 ```
@@ -144,7 +149,7 @@ To receive push notifications from Marketo, you need to add the Marketo Service 
         Marketo.onStop(this);
         super.onStop();
     }
-    
+
     @Override
         protected void onStart() {
         Marketo.onStart(this);
@@ -158,7 +163,7 @@ After saving the configuration above, you must initialize Marketo Push Notificat
 ```java
     Marketo marketoSdk = Marketo.getInstance(getApplicationContext());
     marketoSdk.initializeSDK("munchkinAccountId","secretKey");
-    
+
     // Enable push notification here.
     marketoSdk.initializeMarketoPush(SENDER_ID);
 ```
@@ -178,16 +183,16 @@ To configure a custom notification icon the following method should be called.
     MarketoConfig.Notification config = new MarketoConfig.Notification();
     // Optional bitmap for honeycomb and above
     config.setNotificationLargeIcon(bitmap);
-    
+
     // Required icon Resource ID
-    config.setNotificationSmallIcon(R.id.notification_small_icon); 
-    
-    // Set the configuration 
-    Marketo.getInstance(context).setNotificationConfig(config); 
-    
-    // Get the configuration set 
+    config.setNotificationSmallIcon(R.id.notification_small_icon);
+
+    // Set the configuration
+    Marketo.getInstance(context).setNotificationConfig(config);
+
+    // Get the configuration set
     Marketo.getInstance(context).getNotificationConfig(config);
-  
+
 ```
 
 ###How to Create User Profile on Android
@@ -197,7 +202,7 @@ To configure a custom notification icon the following method should be called.
 You can create rich profiles by sending user fields as shown below.
 ```java
     MarketoLead profile = new MarketoLead();
-    
+
     // Get user profile from network and populate
     try {
         profile.setEmail("htcone3@gmail.com");
@@ -230,7 +235,7 @@ You can create rich profiles by sending user fields as shown below.
 - Report User Profile
 ```java
     MarketoLead profile = new MarketoLead();
-    
+
     // This method will update user profile
     marketoSdk.associateLead(profile);
 ```
@@ -248,7 +253,7 @@ You can create rich profiles by sending user fields as shown below.
     meta.setActionDetails("RedShirt");
     meta.setActionLength("20");
     meta.setActionMetric("30");
-    
+
     Marketo.reportAction("Bought Shirt", meta);
 ```
 
@@ -271,7 +276,7 @@ The Marketo SDK exposes new methods to set and remove the security signature. Th
 
 ```java
       Marketo sdk = Marketo.getInstance(getApplicationContext());
-      
+
       // set signature
       MarketoConfig.SecureMode secureMode = new MarketoConfig.SecureMode();
       secureMode.setAccessKey(<ACCESS_KEY>);
@@ -281,10 +286,10 @@ The Marketo SDK exposes new methods to set and remove the security signature. Th
       if (secureMode.isValid()) {
         sdk.setSecureSignature(secureMode);
       }
-      
+
       // remove signature
       sdk.removeSecureSignature();
-      
+
       // get device id
       sdk.getDeviceId();
 ```
