@@ -61,8 +61,8 @@ If you encounter issues using or integrating this plugin, please file a support 
 1. Open your project in android Studio![file]( ScreenShots/2.png)
 2. Right click on your project and select #Open Module Settings![file]( ScreenShots/3.png)
 3. Click on Project which is in the Left panel of the screen ![file]( ScreenShots/4.png)
-4. In *Android Plugin Repository* add " 'https://raw.github.com/pandemanish/android-sdk.git/Demo' "
-5. In *Default Library Repository* add " 'https://raw.github.com/pandemanish/android-sdk.git/Demo' "
+4. In *Android Plugin Repository* add " 'https://github.com/pandemanish/android-sdk/raw/Demo/' "
+5. In *Default Library Repository* add " 'https://github.com/pandemanish/android-sdk/raw/Demo/' "
 6. Click OK
 7. In application level build.gradle under dependencies add " implementation 'com.marketo:MarketoSDK:0.7.4' "
 8. Sync your Project with Gradle Files
