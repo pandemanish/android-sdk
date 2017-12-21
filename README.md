@@ -1,10 +1,13 @@
-# Marketo Mobile SDK for Android 0.7.4
+# Marketo Mobile SDK for Android 0.7.5
 
 The Marketo Mobile SDK allows integration with Marketo Mobile Engagement (MME).  
 
 # Change Log
 
-v0.7.3 - v0.7.4 (Upcoming)
+v0.7.5 (August 15, 2017)
+- Fixed bug that crashed app when passing deeplink such as ":" to MarketoActivity
+
+v0.7.3 - v0.7.4 (June 7, 2017)
 - Exposed removeDevicePushToken() method
 - Notifications are now dismissed from the notification center after tap (Android 4.0)
 - Custom large notification icon no longer shows default image (Android 4.0)
@@ -64,7 +67,7 @@ If you encounter issues using or integrating this plugin, please file a support 
 4. In *Android Plugin Repository* add " 'https://github.com/pandemanish/android-sdk/raw/Demo/' "
 5. In *Default Library Repository* add " 'https://github.com/pandemanish/android-sdk/raw/Demo/' "
 6. Click OK
-7. In application level build.gradle under dependencies add " implementation 'com.marketo:MarketoSDK:0.7.4' "
+7. In application level build.gradle under dependencies add " implementation 'com.marketo:MarketoSDK:0.7.5' "
 8. Sync your Project with Gradle Files
 <!-- 3. Click on the '+' button on the top Left Corner ![file]( ScreenShots/4.png)
 4. Select 'Import .JAR/.AAR package' and click 'Next'![file]( ScreenShots/5.png)
