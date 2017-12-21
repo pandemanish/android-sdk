@@ -40,7 +40,7 @@ v0.5.3
 - Fixed bug that stop push notification when app was closed
 
 v0.5.2
-- Removed depricated android methods to allow building with Proguard
+- Removed deprecated android methods to allow building with Proguard
 
 v0.5.1
 - Fixed intent.getAction condition
@@ -88,7 +88,6 @@ If you encounter issues using or integrating this plugin, please file a support 
 ```java
     <uses‐permission android:name="android.permission.INTERNET"/>
     <uses‐permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
    <!‐‐Following permissions are required for push notification.‐‐>
     <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
