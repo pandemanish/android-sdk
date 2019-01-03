@@ -112,7 +112,7 @@ If you encounter issues using or integrating this plugin, please file a support 
     <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
 ```
 
-Note :-  If the Build vesion is Android P then please Add following Permission 
+Note :-  If the Build vesion is Android P then please Add following Permission
 ```java
   <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
 ```
